@@ -1,0 +1,30 @@
+cmake_minimum_required(VERSION 3.14)
+project(math_helper)
+
+set(CMAKE_CXX_STANDARD 17)
+
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+set(BOOSTROOT "C:\\Program Files\\boost_1_75_0")
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_PREFIX_PATH "C:\\Qt\\Qt5.14.2\\5.14.2\\mingw73_64\\")
+set(Qt5_DIR "C:\Qt\Qt5.14.2\5.14.2\msvc2017\lib\cmake\Qt5")
+
+find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Quick REQUIRED)
+find_package(Qt5Charts REQUIRED)
+find_package(Boost 1.75.0 REQUIRED)
+include_directories(${Boost_INCLUDE_DIRS})
+
+add_executable(math_helper math_helper/mainwindow.cpp math_helper/general.cpp math_helper/main.cpp math_helper/tinyexpr.c math_helper/tinyexpr.h)
+
+target_link_libraries(LabsGuap Qt5::Core)
+target_link_libraries(LabsGuap Qt5::Widgets)
+target_link_libraries(LabsGuap Qt5::Quick)
+target_link_libraries(LabsGuap Qt5::Charts)
+
+target_compile_options(LabsGuap PRIVATE "-Wa,-mbig-obj")
